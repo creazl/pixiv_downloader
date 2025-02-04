@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh_CN">
+
+<head>
+    <title>随机涩图API 使用文档</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="https://tvax1.sinaimg.cn/large/008uAIdSgy1h57ruj2bvjg309q0b4wk5.gif">
+    <link rel="stylesheet" href="https://jitsu.oss-cn-beijing.aliyuncs.com/api/css/anosu/main.css">
+    <noscript>
+        <link rel="stylesheet" href="https://jitsu.oss-cn-beijing.aliyuncs.com/home/css/noscript.css">
+    </noscript>
+    <style>
+        table {
+            border: white solid;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        table tr td:nth-child(2n), table tr th:nth-child(2n) {
+            border-right: white solid 1px;
+            border-left: white solid 1px;
+        }
+    </style>
+</head>
+
+<body class="is-preload">
+<!-- Wrapper -->
+<div id="wrapper">
+    <h1>随机涩图API</h1>
+    <blockquote>
+        “别整天搁那儿爬来爬去，小孩子吗？”<br>
+        都是p站的图，你怎么不直接爬p站<br>
+        <br>
+        部分图片可能会出现404，<s>那就是寄了</s><br>
+        可能是画师把p站的图删了或者设置了非公开<br>
+        <br>
+        API需要维护，可能会偶尔出现请求失败的情况<br>
+        <br>
+        请求过快会暂时封禁ip（正常来讲谁TM一秒看几张涩图，真要看就给我请求JSON）
+    </blockquote>
+    <h2>使用说明</h2>
+    <ul>
+        <li>请求方式：GET / POST</li>
+        <li>请求地址：</li>
+    </ul>
+    <p><a href="https://image.anosu.top/pixiv/direct">https://image.anosu.top/pixiv/direct</a> （直接跳转）</p>
+    <p><a href="https://image.anosu.top/pixiv/json">https://image.anosu.top/pixiv/json</a> （返回json）</p>
+    <ul>
+        <li>返回格式：302跳转 / JSON</li>
+        <li>参数介绍：</li>
+    </ul>
+    <table class="align-center">
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>类型</th>
+            <th>可选值</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>num</td>
+            <td>int</td>
+            <td>[1,15]</td>
+        </tr>
+        <tr>
+            <td>r18</td>
+            <td>int</td>
+            <td>
+                <code><strong>0</strong></code>,
+                <code><strong>1</strong></code>,
+                <code><strong>2</strong></code>,
+            </td>
+        </tr>
+        <tr>
+            <td>keyword</td>
+            <td>string</td>
+            <td>字符串</td>
+        </tr>
+        <tr>
+            <td>proxy</td>
+            <td>string</td>
+            <td>
+                如 i.pixiv.re
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <h3>参数说明：</h3>
+    <ol>
+        <li>
+            <code>num</code>为返回图片的数量，仅请求json时有效
+        </li>
+        <li>
+            <code>r18</code>为返回图片的分级，<code>0</code>为全年龄，<code>1</code>为18+，<code>2</code>为随机返回一种分级的图片，分别为50%的概率
+        </li>
+        <li>
+            <code>keyword</code>为图片tag所包含的关键字
+        </li>
+        <li>
+            <code>proxy</code>图片链接所使用的反代地址，推荐有能力的人自己搭建，网上有教程
+        </li>
+    </ol>
+    <br>
+    <h2>调用示例</h2>
+    <ul>
+        <li>直接调用</li>
+        <p>
+            <a href="https://image.anosu.top/pixiv/direct">https://image.anosu.top/pixiv/direct</a>
+        </p>
+        <li>关键词查询</li>
+        <p>
+            <a href="https://image.anosu.top/pixiv/direct?keyword=心海">https://image.anosu.top/pixiv/direct?keyword=心海</a>
+        </p>
+        <li>返回json</li>
+        <p>
+            <a href="https://image.anosu.top/pixiv/json?num=3">https://image.anosu.top/pixiv/json?num=3</a>
+        </p>
+    </ul>
+    <h2>返回示例</h2>
+    <pre>
+	<code class="language-json">
+[{
+  "pid": 98060179,
+  "p": 0,
+  "uid": 33955881,
+  "title": "Aurora💤",
+  "author": "ETT",
+  "r18": 0,
+  "width": 1457,
+  "height": 2064,
+  "tags": ["女の子", "女孩子", "おっぱい", "欧派", "明日方舟", "Arknights", "巨乳", "large breasts", "オーロラ(アークナイツ)", "极光（明日方舟）", "アークナイツ", "おへそ", "肚脐"],
+  "url": "https://a.jitsu.top/img-original/img/2022/05/03/02/13/37/98060179_p0.jpg"
+ }]
+</code>
+</pre>
+    <h2>其他说明</h2>
+    <p>
+        有问题可以向我发送邮件：<a href="mailto:jitsu233@gmail.com">jitsu233@gmail.com</a><br>
+        或者到我的博客留言：<a href="https://blog.jitsu.top">blog.jitsu.top</a>
+    </p>
+</div>
+<!-- BG -->
+<div id="bg"></div>
+<!-- Scripts -->
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://jitsu.oss-cn-beijing.aliyuncs.com/home/js/browser.min.js"></script>
+<script src="https://jitsu.oss-cn-beijing.aliyuncs.com/home/js/breakpoints.min.js"></script>
+<script src="https://jitsu.oss-cn-beijing.aliyuncs.com/home/js/util.js"></script>
+<script src="https://jitsu.oss-cn-beijing.aliyuncs.com/home/js/main.js"></script>
+</body>
+
+</html>
